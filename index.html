@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index.html</title>
+</head>
+
+<body>
+    <h1>Location accuracy tester</h1>
+
+    <h2>Get location once</h2>
+    <p id="static_loc"></p>
+
+    <h2>Get location dynamic</h2>
+    <p id="dynamic_loc"></p>
+
+
+    <script>
+        const x = document.getElementById("static_loc");
+        const y = document.getElementById("dynamic_loc");
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showStaticPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function showStaticPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(showDynamicPosition);
+        } else {
+            y.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function showDynamicPosition(position) {
+            y.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+    </script>
+</body>
+
+</html>
